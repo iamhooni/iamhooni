@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 삭제</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+<header>
+    <div class="navbar navbar-dark bg-dark shadow-sm mb-3">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <strong>게시판</strong>
+            </a>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">정말로 삭제하시겠습니까?</h4>
+        <p>이 작업은 되돌릴 수 없습니다.</p>
+    </div>
+    <form action="/post/delete/{{ board.id }}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">삭제하기</button>
+        <a href="/" class="btn btn-secondary">취소</a>
+    </form>
+</div>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

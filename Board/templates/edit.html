@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>게시글 수정 - {{ board.title }}</title>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    </head>
+    <body>
+        <header>
+            <div class="navbar navbar-dark bg-dark shadow-sm mb-3">
+                <div class="container d-flex justify-content-between">
+                    <a href="/" class="navbar-brand d-flex align-items-center">
+                        <strong>게시판</strong>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <h2>게시글 수정</h2>
+            <form method="post" action="/post/edit/{{ board.id }}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ board.title }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">작성자</label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{ board.author }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">내용</label>
+                    <textarea class="form-control" id="content" name="content" rows="5" required>{{ board.content }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">수정하기</button>
+                <a href="/" class="btn btn-secondary">취소</a>
+            </form>
+        </div>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
